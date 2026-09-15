@@ -4,11 +4,15 @@ export interface Usuario {
     id: number;
     nombreCompleto: string;
     documento: { tipo: string, numero: string };
+    tipoDocumento: { tipo: string, numero: string };
+    lugarDeNacimiento: { tipo: string, ciudad: string };
+    numeroDeCelular: string;
+    paisCiudad: { tipo: string }
     fechaNacimiento: string;
-    correo: string;
     datosPersonales: boolean;
     fechaRegistro: string;
-}
+    
+};
 
 export interface PokemonTarjeta {
     id: number;
@@ -17,7 +21,7 @@ export interface PokemonTarjeta {
     type: string;
     baseExperience: string;
     esFavorito: boolean;
-}
+};
 
 interface PokemonContextType {
     entrenadores : Usuario[];
@@ -53,13 +57,13 @@ export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ chil
     const cargarMochilaEntrnador = (usuarioId:number) =>{
         const data = localStorage.getItem(` mochila_${usuarioId}`);
         setMochilaActual(data ? JSON.parse(data) : []);
-    }
+    };
 
     const seleccionarEntrenador =(usuario: Usuario) =>{
         setEntrenadorActivo(usuario);
         localStorage.setItem('entrnador_activo_id_', usuario.id.toString());
         cargarMochilaEntrnador(usuario.id);
-    }
+    };
 
     const resgistrarEntrenador = (nuevoUsuario : Usuario) =>{
         const actualizados = [...entrenadores, nuevoUsuario];
@@ -109,4 +113,4 @@ export const usePokemon = () => {
     const context = useContext(PokemonContext);
     if(!context) throw new Error('usePokemon debe usarse en un Provider');
     return context;
-}
+};
