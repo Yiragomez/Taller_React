@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePokemon} from '../context/PokemonContext';
+import { usePokemon, type Usuario } from '../context/PokemonContext';
 
-export const RegistroUsuario: React.FC = () => {
+export const InventarioPokemon: React.FC = () => {
   const { resgistrarEntrenador } = usePokemon();
   const navigate = useNavigate();
 
@@ -56,42 +56,20 @@ export const RegistroUsuario: React.FC = () => {
           <div className="form-row">
             <div className="form-group">
               <label>Nombre:</label>
-              <input
-                type="text"
-                id="nombre"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                name="nombre"
-                placeholder="Carlos"
-                required
-              />
+              <input type="text"id="nombre"value={nombre}onChange={(e) => setNombre(e.target.value)}name="nombre"placeholder="Carlos"required/>
             </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="apellido">Apellido:</label>
             <br />
-            <input
-              type="text"
-              id="apellido"
-              value={apellido}
-              onChange={(e) => setApellido(e.target.value)}
-              name="apellido"
-              placeholder="Perez"
-              required
-            />
+            <input type="text" id="apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} name="apellido" placeholder="Perez" required/>
           </div>
 
           <div>
             <label htmlFor="pais">Pais:</label>
             <br />
-            <select
-              id="pais"
-              name="pais"
-              value={pais}
-              onChange={(e) => setPais(e.target.value)}
-              required
-            >
+            <select id="pais" name="pais" value={pais} onChange={(e) => setPais(e.target.value)} required>
               <option value="" disabled>
                 Seleccionar
               </option>
@@ -106,13 +84,7 @@ export const RegistroUsuario: React.FC = () => {
           <div>
             <label htmlFor="ciudad">Ciudad:</label>
             <br />
-            <select
-              id="ciudad"
-              name="ciudad"
-              value={ciudad}
-              onChange={(e) => setCiudad(e.target.value)}
-              required
-            >
+            <select id="ciudad" name="ciudad" value={ciudad}onChange={(e) => setCiudad(e.target.value)} required>
               <option value="" disabled>
                 Seleccione una opción
               </option>
@@ -152,13 +124,7 @@ export const RegistroUsuario: React.FC = () => {
           <div>
             <label>Tipo de documento</label>
             <br />
-            <select
-              id="tipo_documento"
-              name="tipo_documento"
-              value={tipoDocumento}
-              onChange={(e) => setTipoDocumento(e.target.value)}
-              required
-            >
+            <select id="tipo_documento" name="tipo_documento" value={tipoDocumento} onChange={(e) => setTipoDocumento(e.target.value)} required >
               <option value="" disabled>
                 Seleccione...
               </option>
@@ -171,53 +137,23 @@ export const RegistroUsuario: React.FC = () => {
           <div>
             <label>Número de Identificación:</label>
             <br />
-            <input
-              type="text"
-              id="numero_identificacion"
-              name="numero_identificacion"
-              value={numeroDeIdentificacion}
-              onChange={(e) => setNumeroDeIdentificacion(e.target.value)}
-              placeholder="1233489498"
-              required
-            />
+            <input type="text" id="numero_identificacion" name="numero_identificacion" value={numeroDeIdentificacion} onChange={(e) => setNumeroDeIdentificacion(e.target.value)} placeholder="1233489498" required/>
           </div>
 
           <div>
             <label>Fecha de Nacimiento:</label>
             <br />
-            <input
-              type="date"
-              id="fecha_nacimiento"
-              name="fecha_nacimiento"
-              value={fechaNacimiento}
-              onChange={(e) => setFechaNacimiento(e.target.value)}
-              required
-            />
+            <input type="date"  id="fecha_nacimiento" name="fecha_nacimiento" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)} required/>
           </div>
 
           <div>
             <label>Número de Celular:</label>
             <br />
-            <input
-              type="tel"
-              id="celular"
-              name="celular"
-              value={numeroDeCelular}
-              onChange={(e) => setNumeroDeCelular(e.target.value)}
-              placeholder="000 000 00 00"
-              required
-            />
+            <input type="tel" id="celular" name="celular" value={numeroDeCelular} onChange={(e) => setNumeroDeCelular(e.target.value)} placeholder="000 000 00 00" required />
           </div>
 
           <div>
-            <input
-              type="checkbox"
-              id="datos_personales"
-              checked={datosPersonales}
-              onChange={(e) => setDatosPersonales(e.target.checked)}
-              name="politica_datos"
-              required
-            />
+            <input type="checkbox" id="datos_personales" checked={datosPersonales} onChange={(e) => setDatosPersonales(e.target.checked)} name="politica_datos" required/>
             <label htmlFor="datos_personales">
               Acepto la política de tratamiento de datos personales.
             </label>

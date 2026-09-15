@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, NavLink, Navigate, Route} from 'react-router-dom';
+import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import { PokemonProvider } from './context/PokemonContext';
 import { RegistroUsuario } from './components/RegistroUsuario';
 import { BuscadorPokemon } from './components/BuscadorPokemon';
-import { InventarioPokemon } from './components/InventarioPokemon';
+import { InventarioPokemon } from './components/InventarioPokemon.tsx';
 
 function App() {
   return (
@@ -11,10 +11,10 @@ function App() {
         <header>
           <h1> Registro de Entrenadores y Pokemon en React</h1>
             <nav>
-              <NavLink to="/registro" className={(isActive) => (isActive? 'active-tab' : '')}>Registro</NavLink>
-              <NavLink to="/pokemon" className={(isActive) => (isActive? 'active-tab' : '')}>Buscador</NavLink>
-              <NavLink to="/inventario" className={(isActive) => (isActive? 'active-tab' : '')}>Inventario</NavLink>
-          </nav>
+              <NavLink to="/registro" className={({ isActive }) => (isActive ? 'active-tab' : '')}>Registro</NavLink>
+              <NavLink to="/pokemon" className={({ isActive }) => (isActive ? 'active-tab' : '')}>Buscador</NavLink>
+              <NavLink to="/inventario" className={({ isActive }) => (isActive ? 'active-tab' : '')}>Inventario</NavLink>
+            </nav>
         </header>
         <main>
           <Routes>

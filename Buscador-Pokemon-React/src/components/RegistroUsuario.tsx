@@ -70,12 +70,10 @@ export const RegistroUsuario: React.FC = () => {
             <label htmlFor="pais">Pais:</label>
             <br />
             <select id="pais" name="pais" value={pais} onChange={(e) => setPais(e.target.value)} required>
-              <option value="" disabled>
-                Seleccionar
-              </option>
-              <option value="Colombia">Colombia</option>
-              <option value="Canada">Canada</option>
-              <option value="Venezuela">Venezuela</option>
+              <option value="" disabled>Selelccionar</option>
+              <option value="169 - Colombia">Colombia</option>
+              <option value="149 - Canada">Canada</option>
+              <option value="850 - Venezuela">Venezuela</option>
             </select>
           </div>
 
@@ -84,53 +82,39 @@ export const RegistroUsuario: React.FC = () => {
           <div>
             <label htmlFor="ciudad">Ciudad:</label>
             <br />
-            <select id="ciudad" name="ciudad" value={ciudad}onChange={(e) => setCiudad(e.target.value)} required>
-              <option value="" disabled>
-                Seleccione una opción
-              </option>
-
-              {pais === 'Colombia' && (
-                <>
-                  <option value="Bogotá D.C.">Bogotá D.C.</option>
-                  <option value="Medellín">Medellín</option>
-                  <option value="Cali">Cali</option>
-                  <option value="Barranquilla">Barranquilla</option>
-                  <option value="Cartagena">Cartagena</option>
-                </>
-              )}
-
-              {pais === 'Canada' && (
-                <>
-                  <option value="Toronto">Toronto</option>
-                  <option value="Montréal">Montréal</option>
-                  <option value="Vancouver">Vancouver</option>
-                  <option value="Calgary">Calgary</option>
-                  <option value="Edmonton">Edmonton</option>
-                </>
-              )}
-
-              {pais === 'Venezuela' && (
-                <>
-                  <option value="Caracas">Caracas</option>
-                  <option value="Maracaibo">Maracaibo</option>
-                  <option value="Valencia">Valencia</option>
-                  <option value="Barquisimeto">Barquisimeto</option>
-                  <option value="Barcelona">Barcelona</option>
-                </>
-              )}
+            <select id="ciudad" name="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)} required>
+              <option value="" disabled>Seleccione una opción</option>
+              <optgroup label="Colombia">
+                <option value="11001 - Bogotá D.C.,">Bogotá D.C.</option>
+                <option value="05001 - Medellin">Medellín</option>
+                <option value="76001 - Cali">Cali</option>
+                <option value="08001 - Barranquilla">Barranquilla</option>
+                <option value="13001 - Cartagena">Cartagena</option>
+              </optgroup>
+              <optgroup label="Canada">
+                <option value="3520005 - Toronto">Toronto</option>
+                <option value="2466023 - Montrèal">Montrèal</option>
+                <option value="5915022 - Vancouver">Vancouver</option>
+                <option value="4806016 - Calgary">Calgary</option>
+                <option value="4811061 - Edmonton">Edmonton</option>
+              </optgroup>
+              <optgroup label="Venezuela">
+                <option value="01001 - Caracas">Caracas</option>
+                <option value="24001 - Maracaibo">Maracaibo</option>
+                <option value="08001 - Valencia">Valencia</option>
+                <option value="11001 - Barquisimeto">Barquisimeto</option>
+                <option value="02001 - Barcelona">Barcelona</option>
+              </optgroup>
             </select>
           </div>
-
           <div>
-            <label>Tipo de documento</label>
+            <label htmlFor="tipo_documento">Tipo de Documento:</label>
             <br />
-            <select id="tipo_documento" name="tipo_documento" value={tipoDocumento} onChange={(e) => setTipoDocumento(e.target.value)} required >
-              <option value="" disabled>
-                Seleccione...
-              </option>
-              <option value="CC">Cédula de Ciudadanía</option>
-              <option value="TI">Tarjeta de Identidad</option>
-              <option value="CE">Cédula de Extranjería</option>
+            <select id="tipo_documento" name="tipo_documento" value={tipoDocumento} onChange={(e) => setTipoDocumento(e.target.value)} required>
+              <option value="CC">CC</option>
+              <option value="TI">TI</option>
+              <option value="CE">CE</option>
+              <option value="PAS">PAS</option>
             </select>
           </div>
 
