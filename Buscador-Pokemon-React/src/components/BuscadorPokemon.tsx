@@ -1,169 +1,76 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { usePokemon, type Usuario } from '../context/PokemonContext';
+import {usePokemon, type PokemonTarjeta } from '../context/PokemonContext'
 
-export const BuscadorPokemon: React.FC = () => {
-  const { resgistrarEntrenador } = usePokemon();
-  const navigate = useNavigate();
+export const BuscadorPokemon: React.FC = () =>{
 
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [pais, setPais] = useState('');
-  const [ciudad, setCiudad] = useState('');
-  const [tipoDocumento, setTipoDocumento] = useState('CC');
-  const [numeroDeIdentificacion, setNumeroDeIdentificacion] = useState('');
-  const [fechaNacimiento, setFechaNacimiento] = useState('');
-  const [numeroDeCelular, setNumeroDeCelular] = useState('');
-  const [datosPersonales, setDatosPersonales] = useState(false);
+    const { entrenadorActivo, guardarPokemonMochila } = usePokemon();
 
-  const eventoSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    const [busqueda, setBusqueda] = useState('');
+    const [pokemonActual, setPokemonActual] = useState<PokemonTarjeta | null>(null);
+    const [mensajeError, setMensajeError] = useState<string | null>(null);
+    const [cargando, setCargando] = useState(false);
 
-    if (!datosPersonales) {
-      alert('Aceptar política de privacidad');
-      return;
-    }
+    const buscarPokemon = async (e: React.FormEvent) => {
+        e.preventDefault();
 
-   const nuevo: Usuario = {
-        id: Date.now(),
-        nombreCompleto: `${nombre} ${apellido}`,
-        lugarDeNacimiento: {
-            tipo: pais,
-            ciudad: ciudad,
-        },
-        tipoDocumento: {
-            tipo: tipoDocumento,
-            numero: numeroDeIdentificacion,
-        },
-        fechaNacimiento,
-        numeroDeCelular,
-        datosPersonales,
-        fechaRegistro: new Date().toLocaleDateString(),
+        const query = busqueda.trim().toLowerCase();
+
+        if(!query) return;
+
+        setCargando(true);
+        setMensajeError(null);
+
+        try {
+            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+            if(!res.ok) throw new Error('Auxilio, Socorro, no hay Pokemon');
+
+            const datos = await res.json();
+            setPokemonActual({
+                id: datos.id,
+                name: datos.name.toUpperCase(),
+                image: datos.sprites.front_default,
+                type: datos.types[0].type.name,
+                baseExperience: datos.base_experience,
+                esFavorito: false
+            });
+        } catch (error: any) {
+            setPokemonActual(null);
+            setMensajeError(error.message);
+        } finally {
+            setCargando(false);
+        }
+
     };
 
-    resgistrarEntrenador(nuevo);
-    navigate('/pokemon');
-  };
+    if(pokemonActual){
+        guardarPokemonMochila(pokemonActual);
+        alert(`El Pokemon ${pokemonActual.name} es guardado en la mochila de ${entrenadorActivo?.nombreCompleto}`);
+    }
 
-  return (
+
+return(
+<div>
     <div>
-      <header>
-        <h2>Registro de Entrenadores</h2>
-      </header>
-
-      <div>
-        <form id="FormularioRegistro" action="#" onSubmit={eventoSubmit}>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Nombre:</label>
-              <input type="text"id="nombre"value={nombre}onChange={(e) => setNombre(e.target.value)}name="nombre"placeholder="Carlos"required/>
+        {entrenadorActivo ? (
+            <p>Mochila Activa de: <strong>{entrenadorActivo.nombreCompleto}</strong></p>
+        ) : (
+            <p>No hay entrenador Activo. Ve al formulario de Registro para activarlo, socio.</p>
+        )}
+    </div><form onSubmit={buscarPokemon}>
+            <div>
+                <label>Buscar Pokemon</label>
+                <input type="text" value={busqueda} onChange={(e) => setBusqueda(e.target.value)}></input>
             </div>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="apellido">Apellido:</label>
-            <br />
-            <input type="text" id="apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} name="apellido" placeholder="Perez" required/>
-          </div>
-
-          <div>
-            <label htmlFor="pais">Pais:</label>
-            <br />
-            <select id="pais" name="pais" value={pais} onChange={(e) => setPais(e.target.value)} required>
-              <option value="" disabled>
-                Seleccionar
-              </option>
-              <option value="Colombia">Colombia</option>
-              <option value="Canada">Canada</option>
-              <option value="Venezuela">Venezuela</option>
-            </select>
-          </div>
-
-          <br />
-
-          <div>
-            <label htmlFor="ciudad">Ciudad:</label>
-            <br />
-            <select id="ciudad" name="ciudad" value={ciudad}onChange={(e) => setCiudad(e.target.value)} required>
-              <option value="" disabled>
-                Seleccione una opción
-              </option>
-
-              {pais === 'Colombia' && (
-                <>
-                  <option value="Bogotá D.C.">Bogotá D.C.</option>
-                  <option value="Medellín">Medellín</option>
-                  <option value="Cali">Cali</option>
-                  <option value="Barranquilla">Barranquilla</option>
-                  <option value="Cartagena">Cartagena</option>
-                </>
-              )}
-
-              {pais === 'Canada' && (
-                <>
-                  <option value="Toronto">Toronto</option>
-                  <option value="Montréal">Montréal</option>
-                  <option value="Vancouver">Vancouver</option>
-                  <option value="Calgary">Calgary</option>
-                  <option value="Edmonton">Edmonton</option>
-                </>
-              )}
-
-              {pais === 'Venezuela' && (
-                <>
-                  <option value="Caracas">Caracas</option>
-                  <option value="Maracaibo">Maracaibo</option>
-                  <option value="Valencia">Valencia</option>
-                  <option value="Barquisimeto">Barquisimeto</option>
-                  <option value="Barcelona">Barcelona</option>
-                </>
-              )}
-            </select>
-          </div>
-
-          <div>
-            <label>Tipo de documento</label>
-            <br />
-            <select id="tipo_documento" name="tipo_documento" value={tipoDocumento} onChange={(e) => setTipoDocumento(e.target.value)} required >
-              <option value="" disabled>
-                Seleccione...
-              </option>
-              <option value="CC">Cédula de Ciudadanía</option>
-              <option value="TI">Tarjeta de Identidad</option>
-              <option value="CE">Cédula de Extranjería</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Número de Identificación:</label>
-            <br />
-            <input type="text" id="numero_identificacion" name="numero_identificacion" value={numeroDeIdentificacion} onChange={(e) => setNumeroDeIdentificacion(e.target.value)} placeholder="1233489498" required/>
-          </div>
-
-          <div>
-            <label>Fecha de Nacimiento:</label>
-            <br />
-            <input type="date"  id="fecha_nacimiento" name="fecha_nacimiento" value={fechaNacimiento} onChange={(e) => setFechaNacimiento(e.target.value)} required/>
-          </div>
-
-          <div>
-            <label>Número de Celular:</label>
-            <br />
-            <input type="tel" id="celular" name="celular" value={numeroDeCelular} onChange={(e) => setNumeroDeCelular(e.target.value)} placeholder="000 000 00 00" required />
-          </div>
-
-          <div>
-            <input type="checkbox" id="datos_personales" checked={datosPersonales} onChange={(e) => setDatosPersonales(e.target.checked)} name="politica_datos" required/>
-            <label htmlFor="datos_personales">
-              Acepto la política de tratamiento de datos personales.
-            </label>
-          </div>
-
-          <button type="submit" className="btn-submit">
-            Enviar Registro
-          </button>
+            <button type='submit' disabled={cargando}> {cargando ? 'Escaneando...' : 'Buscar'}
+            </button>
         </form>
-      </div>
+
+{pokemonActual && (
+    <div>
+        <h3>{pokemonActual.name}</h3>
+        <img src={pokemonActual.image}></img>
     </div>
-  );
+)}
+</div>
+);
 };

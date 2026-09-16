@@ -18,7 +18,7 @@ export interface PokemonTarjeta {
     image: string;
     type: string;
     baseExperience: string;
-    esFavorito: boolean;
+    esFavorito?: boolean;
 };
 
 interface PokemonContextType {
