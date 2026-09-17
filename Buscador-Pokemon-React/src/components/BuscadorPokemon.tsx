@@ -41,15 +41,24 @@ export const BuscadorPokemon: React.FC = () =>{
         }
 
     };
+    const clickGuardar =() =>{
 
-    if(pokemonActual){
-        guardarPokemonMochila(pokemonActual);
-        alert(`El Pokemon ${pokemonActual.name} es guardado en la mochila de ${entrenadorActivo?.nombreCompleto}`);
+        if(!entrenadorActivo){
+            alert('Debes seleccionar o registrar un entrenador');
+        }
+
+
+
+        if(pokemonActual){
+            guardarPokemonMochila(pokemonActual);
+            alert(`El Pokemon ${pokemonActual.name} es guardado en la mochila de ${entrenadorActivo?.nombreCompleto}`);
+    }
     }
 
 
+
 return(
-<div>
+<div className=" ">
     <div>
         {entrenadorActivo ? (
             <p>Mochila Activa de: <strong>{entrenadorActivo.nombreCompleto}</strong></p>
@@ -65,10 +74,32 @@ return(
             </button>
         </form>
 
-{pokemonActual && (
+
+      {pokemonActual && (
     <div>
         <h3>{pokemonActual.name}</h3>
         <img src={pokemonActual.image}></img>
+        <p>
+            Elemento: {''}
+            <span style={{
+                backgroundColor:
+                    pokemonActual.type === 'fire' ? '#ff0000' : 
+                    pokemonActual.type === 'water' ? '#3cb7e7' :
+                    pokemonActual.type === 'grass' ? '#3ce775' :
+                    pokemonActual.type === 'electric' ? '#f0e440' : '#9367d8',
+                color: 'white',
+                padding: '3px 8px',
+                borderRadius: '10px',
+                border: '2px solid #ececec',
+            }}>
+                {pokemonActual.type.toLocaleUpperCase()}
+
+            </span>
+        </p>
+        <p>Experiencia Base: <strong>{pokemonActual.baseExperience}</strong></p>
+        <button type="button" className="btn-capturar" onClick={clickGuardar} disabled={!entrenadorActivo}>
+            Guardar en la Mochila</button>
+
     </div>
 )}
 </div>
