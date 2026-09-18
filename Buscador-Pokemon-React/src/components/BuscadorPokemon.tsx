@@ -45,7 +45,9 @@ export const BuscadorPokemon: React.FC = () =>{
 
         if(!entrenadorActivo){
             alert('Debes seleccionar o registrar un entrenador');
+            return;
         }
+
 
 
 
@@ -75,7 +77,11 @@ return(
         </form>
 
 
-      {pokemonActual && (
+      {mensajeError && (
+        <p className='buscador-error'>{mensajeError}</p>
+      )}
+
+      {pokemonActual &&(
     <div>
         <h3>{pokemonActual.name}</h3>
         <img src={pokemonActual.image}></img>

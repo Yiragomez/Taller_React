@@ -52,7 +52,7 @@ export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ chil
         }
     },[]);
 
-    const cargarMochilaEntrnador = (usuarioId:number) =>{
+    const cargarMochilaEntrenador = (usuarioId:number) =>{
         const data = localStorage.getItem(`mochila_${usuarioId}`);
         setMochilaActual(data ? JSON.parse(data) : []);
     };
@@ -60,7 +60,7 @@ export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ chil
     const seleccionarEntrenador =(usuario: Usuario) =>{
         setEntrenadorActivo(usuario);
         localStorage.setItem('entrenador_activo_id', usuario.id.toString());
-        cargarMochilaEntrnador(usuario.id);
+        cargarMochilaEntrenador(usuario.id);
     };
 
     const resgistrarEntrenador = (nuevoUsuario : Usuario) =>{
@@ -70,10 +70,21 @@ export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ chil
         seleccionarEntrenador(nuevoUsuario);
     };
     const guardarPokemonMochila = (pokemon: PokemonTarjeta) =>{
+
         if(!entrenadorActivo) return;
-        const actualizada = [...mochilaActual, {...pokemon, esFavorito: false}];
+
+        const clave = `mochila_${entrenadorActivo.id}`;
+        const data = localStorage.getItem(clave);
+        const mochilaBD: PokemonTarjeta[] = data? JSON.parse(data): [];
+        const nuevoPokemon = {...pokemon,esFavorito: false
+        };
+
+        const actualizada = [...mochilaBD,nuevoPokemon
+        ];
+
+        localStorage.setItem(clave,JSON.stringify(actualizada)
+        );
         setMochilaActual(actualizada);
-        localStorage.setItem(`mochila_${entrenadorActivo.id}`, JSON.stringify(actualizada));
     };
 
     const actualizarFavorito = (pokemonId: number) =>{
