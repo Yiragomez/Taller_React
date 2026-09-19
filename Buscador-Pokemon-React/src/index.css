@@ -1,111 +1,1775 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* =========================================================
+   🎮 POKÉMON APP
+   CSS COMPLETO
+   ========================================================= */
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
+/* =========================================================
+   🌎 CONFIGURACIÓN GENERAL
+   ========================================================= */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+* {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  padding: 0;
+
+  font-family: "Trebuchet MS", Arial, sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #ffffff 0%,
+      #e8f4ff 40%,
+      #c9def5 100%
+    );
+
+  color: #111827;
+
+  min-height: 100vh;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+
+/* =========================================================
+   🎮 CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+#root {
+  min-height: 100vh;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+
+/* =========================================================
+   🟡 HEADER PRINCIPAL DE APP.TSX
+   ========================================================= */
+
+header {
+  width: 100%;
+
+  margin: 0 auto 30px;
+
+  padding: 25px 20px;
+
+  text-align: center;
+
+  background: #facc15;
+
+  border-bottom: 6px solid #a16207;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Título principal */
+
+header h1 {
+  margin: 0 0 25px;
+
+  color: #111827;
+
+  font-size: 28px;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+  text-shadow:
+    2px 2px 0 #ffffff,
+    4px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   🎮 NAVEGACIÓN
+   ========================================================= */
+
+header nav {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 18px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   🔘 BOTONES DE NAVEGACIÓN
+   ========================================================= */
+
+header nav a {
+  display: inline-block;
+
+  min-width: 160px;
+
+  padding: 13px 25px;
+
+  text-decoration: none;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  border: 4px solid #111827;
+
+  border-radius: 14px;
+
+  background: #64748b;
+
+  box-shadow:
+    0 5px 0 #334155;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* 🔴 REGISTRO */
+
+header nav a:nth-child(1) {
+  background: #ef4444;
+
+  border-color: #991b1b;
+
+  box-shadow:
+    0 5px 0 #7f1d1d;
+}
+
+header nav a:nth-child(1):hover {
+  background: #dc2626;
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 9px 0 #7f1d1d;
+}
+
+
+/* 🔵 BUSCADOR */
+
+header nav a:nth-child(2) {
+  background: #3b82f6;
+
+  border-color: #1e3a8a;
+
+  box-shadow:
+    0 5px 0 #1e3a8a;
+}
+
+header nav a:nth-child(2):hover {
+  background: #2563eb;
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 9px 0 #1e3a8a;
+}
+
+
+/* 🟢 INVENTARIO */
+
+header nav a:nth-child(3) {
+  background: #22c55e;
+
+  border-color: #166534;
+
+  box-shadow:
+    0 5px 0 #14532d;
+}
+
+header nav a:nth-child(3):hover {
+  background: #16a34a;
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 9px 0 #14532d;
+}
+
+
+/* ⭐ BOTÓN ACTIVO */
+
+header nav a.active-tab {
+  transform: translateY(2px);
+
+  filter: brightness(1.12);
+
+  border-width: 5px;
+
+  box-shadow:
+    0 2px 0 #111827,
+    0 0 18px rgba(255, 255, 255, 0.8);
+}
+
+
+/* =========================================================
+   📄 CONTENIDO PRINCIPAL
+   ========================================================= */
+
+main {
+  width: 100%;
+
+  padding: 0 15px 50px;
+}
+
+
+/* =========================================================
+   🔴 REGISTRO DE ENTRENADORES
+   ========================================================= */
+
+main > div {
+  width: 100%;
+}
+
+
+/* CONTENEDOR DEL REGISTRO */
+
+.registro-container {
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 30px;
+
+  background: white;
+
+  border: 5px solid #2563eb;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 8px 0 #1e3a8a,
+    0 15px 30px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   🟡 TÍTULO DEL REGISTRO
+   ========================================================= */
+
+.registro-container > header {
+  margin: 0 0 30px;
+
+  padding: 25px;
+
+  background: #facc15;
+
+  border: 5px solid #111827;
+
+  border-bottom: 8px solid #a16207;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 7px 0 #a16207;
+}
+
+
+/* Título */
+
+.registro-container > header h2 {
+  margin: 0;
+
+  color: #2563eb;
+
+  font-size: 26px;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    2px 2px 0 white;
+}
+
+
+/* =========================================================
+   📋 FORMULARIO
+   ========================================================= */
+
+#FormularioRegistro {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  column-gap: 25px;
+
+  row-gap: 20px;
+
+  width: 100%;
+}
+
+
+/* Los BR no serán necesarios */
+
+#FormularioRegistro br {
+  display: none;
+}
+
+
+/* =========================================================
+   CAMPOS DEL FORMULARIO
+   ========================================================= */
+
+#FormularioRegistro .form-row {
+  display: contents;
+}
+
+
+#FormularioRegistro .form-group,
+#FormularioRegistro > div {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   🏷️ ETIQUETAS
+   ========================================================= */
+
+#FormularioRegistro label {
+  display: block;
+
+  width: 100%;
+
+  margin-bottom: 8px;
+
+  color: #111827;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   ✏️ INPUTS
+   ========================================================= */
+
+#FormularioRegistro input:not([type="checkbox"]),
+#FormularioRegistro select {
+  width: 100%;
+
+  height: 48px;
+
+  padding: 10px 14px;
+
+  border: 3px solid #94a3b8;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  color: #111827;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* =========================================================
+   🔵 FOCUS
+   ========================================================= */
+
+#FormularioRegistro input:not([type="checkbox"]):focus,
+#FormularioRegistro select:focus {
+
+  border-color: #2563eb;
+
+  background: white;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.15);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   💬 PLACEHOLDER
+   ========================================================= */
+
+#FormularioRegistro input::placeholder {
+  color: #64748b;
+
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   👤 ORDEN DE CAMPOS
+   ========================================================= */
+
+/*
+   Con tu HTML actual los campos aparecen
+   en este orden:
+
+   Nombre
+   Apellido
+
+   País
+   Ciudad
+
+   Tipo documento
+   Identificación
+
+   Fecha nacimiento
+   Celular
+
+   Política
+   Botón
+*/
+
+
+/* =========================================================
+   ☑️ POLÍTICA DE DATOS
+   ========================================================= */
+
+#FormularioRegistro > div:has(input[type="checkbox"]) {
+
+  grid-column: 1 / -1;
+
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+
+  gap: 10px;
+
+  width: 100%;
+
+  padding: 14px 16px;
+
+  margin-top: 5px;
+
+  background: #fef3c7;
+
+  border: 2px solid #f59e0b;
+
+  border-radius: 12px;
+}
+
+
+/* Checkbox */
+
+#FormularioRegistro input[type="checkbox"] {
+
+  width: 18px;
+
+  height: 18px;
+
+  flex-shrink: 0;
+
+  margin: 0;
+
+  accent-color: #ef4444;
+
+  cursor: pointer;
+}
+
+
+/* Texto de política */
+
+#FormularioRegistro div:has(input[type="checkbox"]) label {
+
+  width: auto;
+
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   🔴 BOTÓN ENVIAR REGISTRO
+   ========================================================= */
+
+#FormularioRegistro .btn-submit {
+
+  grid-column: 1 / -1;
+
+  width: 100%;
+
+  max-width: 350px;
+
+  justify-self: center;
+
+  margin-top: 8px;
+
+  padding: 14px 25px;
+
+  border: 4px solid #991b1b;
+
+  border-radius: 14px;
+
+  background: #ef4444;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 0 #7f1d1d;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+#FormularioRegistro .btn-submit:hover {
+
+  background: #dc2626;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 9px 0 #7f1d1d;
+}
+
+
+#FormularioRegistro .btn-submit:active {
+
+  transform: translateY(3px);
+
+  box-shadow:
+    0 2px 0 #7f1d1d;
+}
+
+
+/* =========================================================
+   🔄 CAMBIAR ENTRENADOR
+   ========================================================= */
+
+.cambiar-entrenador {
+
+  width: 100%;
+
+  margin-top: 30px;
+
+  padding: 20px;
+
+  background: #e0f2fe;
+
+  border: 3px solid #0284c7;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow:
+    0 5px 0 #0369a1;
+}
+
+
+/* Título */
+
+.cambiar-entrenador h3 {
+
+  margin-top: 0;
+
+  margin-bottom: 18px;
+
+  color: #0369a1;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   👥 LISTA DE ENTRENADORES
+   ========================================================= */
+
+.lista-entrenadores {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 12px;
+}
+
+
+/* =========================================================
+   🔘 BOTONES ENTRENADORES
+   ========================================================= */
+
+.btn-entrenador {
+
+  padding: 10px 16px;
+
+  border: 3px solid #334155;
+
+  border-radius: 12px;
+
+  background: #cbd5e1;
+
+  color: #111827;
+
+  font-family: inherit;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #475569;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.btn-entrenador:hover {
+
+  background: #fde047;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 7px 0 #475569;
+}
+
+
+/* ENTRENADOR ACTIVO */
+
+.btn-entrenador.activo {
+
+  background: #ec4899;
+
+  color: white;
+
+  border-color: #831843;
+
+  box-shadow:
+    0 4px 0 #831843;
+}
+
+
+/* =========================================================
+   🔵 BUSCADOR POKÉMON
+   ========================================================= */
+
+.buscador-container {
+
+  width: 100%;
+
+  max-width: 850px;
+
+  margin: 0 auto;
+
+  padding: 30px;
+
+  background: white;
+
+  border: 5px solid #3b82f6;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 8px 0 #1e40af,
+    0 15px 30px rgba(0, 0, 0, 0.20);
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   👤 ENTRENADOR ACTIVO
+   ========================================================= */
+
+.entrenador-activo {
+
+  padding: 15px;
+
+  margin-bottom: 25px;
+
+  background: #dcfce7;
+
+  border: 3px solid #16a34a;
+
+  border-radius: 15px;
+
+  color: #166534;
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   🚫 SIN ENTRENADOR
+   ========================================================= */
+
+.sin-entrenador {
+
+  padding: 15px;
+
+  margin-bottom: 25px;
+
+  background: #fee2e2;
+
+  border: 3px solid #dc2626;
+
+  border-radius: 15px;
+
+  color: #991b1b;
+}
+
+
+/* =========================================================
+   🔍 FORMULARIO DEL BUSCADOR
+   ========================================================= */
+
+.buscador-form {
+
+  display: flex;
+
+  gap: 12px;
+
+  justify-content: center;
+
+  align-items: end;
+
+  margin-bottom: 25px;
+}
+
+
+.buscador-form .campo-busqueda {
+
+  flex: 1;
+
+  text-align: left;
+}
+
+
+.buscador-form label {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-weight: bold;
+
+  color: #1e293b;
+}
+
+
+.buscador-form input {
+
+  width: 100%;
+
+  height: 48px;
+
+  padding: 12px 14px;
+
+  border: 3px solid #94a3b8;
+
+  border-radius: 12px;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+
+.buscador-form input:focus {
+
+  border-color: #3b82f6;
+
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.20);
+}
+
+
+/* =========================================================
+   🔵 BOTÓN BUSCAR
+   ========================================================= */
+
+.btn-buscar {
+
+  height: 48px;
+
+  padding: 0 25px;
+
+  border: 4px solid #1e3a8a;
+
+  border-radius: 12px;
+
+  background: #3b82f6;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 0 #1e3a8a;
+
+  transition: 0.2s;
+}
+
+
+.btn-buscar:hover {
+
+  background: #2563eb;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 0 #1e3a8a;
+}
+
+
+.btn-buscar:active {
+
+  transform: translateY(3px);
+
+  box-shadow:
+    0 2px 0 #1e3a8a;
+}
+
+
+.btn-buscar:disabled {
+
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   ⚠️ ERROR DEL BUSCADOR
+   ========================================================= */
+
+.buscador-error {
+
+  padding: 15px;
+
+  background: #fee2e2;
+
+  color: #991b1b;
+
+  border: 3px solid #dc2626;
+
+  border-radius: 12px;
+
+  font-weight: bold;
+}
+
+
+/* =========================================================
+   🐾 TARJETA DEL POKÉMON BUSCADO
+   ========================================================= */
+
+.pokemon-card {
+
+  max-width: 400px;
+
+  margin: 30px auto 0;
+
+  padding: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #eff6ff
+    );
+
+  border: 5px solid #111827;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 8px 0 #111827,
+    0 15px 30px rgba(0, 0, 0, 0.20);
+
+  animation:
+    aparecerPokemon 0.5s ease;
+}
+
+
+@keyframes aparecerPokemon {
+
+  from {
+    opacity: 0;
+
+    transform:
+      scale(0.8)
+      translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
   }
 }
-h2 {
+
+
+/* Nombre */
+
+.pokemon-card h3 {
+
+  margin-top: 0;
+
+  font-size: 28px;
+
+  color: #1e3a8a;
+
+  text-shadow:
+    2px 2px 0 #bfdbfe;
+}
+
+
+/* Imagen */
+
+.pokemon-card img {
+
+  width: 200px;
+
+  height: 200px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+
+  background: #dbeafe;
+
+  border: 4px solid #3b82f6;
+
+  border-radius: 50%;
+
+  transition: 0.3s;
+}
+
+
+.pokemon-card img:hover {
+
+  transform:
+    scale(1.12)
+    rotate(5deg);
+}
+
+
+/* =========================================================
+   🟣 TIPO POKÉMON
+   ========================================================= */
+
+.tipo-pokemon {
+
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  color: white;
+
+  font-weight: bold;
+
+  border: 3px solid #111827;
+}
+
+
+/* =========================================================
+   🟢 GUARDAR EN MOCHILA
+   ========================================================= */
+
+.btn-capturar {
+
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 13px 20px;
+
+  border: 4px solid #166534;
+
+  border-radius: 14px;
+
+  background: #22c55e;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 0 #14532d;
+
+  transition: 0.2s;
+}
+
+
+.btn-capturar:hover {
+
+  background: #16a34a;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 0 #14532d;
+}
+
+
+.btn-capturar:active {
+
+  transform: translateY(3px);
+
+  box-shadow:
+    0 2px 0 #14532d;
+}
+
+
+.btn-capturar:disabled {
+
+  background: #94a3b8;
+
+  border-color: #475569;
+
+  box-shadow:
+    0 4px 0 #334155;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   🟢 INVENTARIO
+   ========================================================= */
+
+.inventario-container {
+
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 30px;
+
+  background: white;
+
+  border: 5px solid #22c55e;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 8px 0 #166534,
+    0 15px 30px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   🎒 CABECERA MOCHILA
+   ========================================================= */
+
+.inventario-container header {
+
+  margin: 0 0 30px;
+
+  padding: 20px;
+
+  background: #dcfce7;
+
+  border: 4px solid #166534;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 0 #166534;
+}
+
+
+.inventario-container h2 {
+
+  margin: 0;
+
+  color: #166534;
+
+  text-transform: uppercase;
+
   font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
+}
+
+
+/* =========================================================
+   🃏 GRID DE POKÉMON
+   ========================================================= */
+
+.grid-mochila {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(210px, 1fr)
+    );
+
+  gap: 25px;
+}
+
+
+/* =========================================================
+   🐉 TARJETA DE POKÉMON
+   ========================================================= */
+
+.tarjeta-item {
+
+  position: relative;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f1f5f9
+    );
+
+  border: 4px solid #334155;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 6px 0 #334155;
+
+  transition: 0.25s;
+}
+
+
+.tarjeta-item:hover {
+
+  transform:
+    translateY(-8px)
+    rotate(-1deg);
+
+  box-shadow:
+    0 14px 0 #334155,
+    0 18px 25px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Número */
+
+.tarjeta-item > span {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  font-weight: bold;
+}
+
+
+/* Imagen */
+
+.tarjeta-item img {
+
+  width: 130px;
+
+  height: 130px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+
+  transition: 0.3s;
+}
+
+
+.tarjeta-item:hover img {
+
+  transform: scale(1.15);
+}
+
+
+/* Nombre */
+
+.tarjeta-item h4 {
+
+  margin: 8px 0;
+
+  font-size: 20px;
+
+  color: #1e293b;
+}
+
+
+/* Tipo */
+
+.tarjeta-item p {
+
+  display: inline-block;
+
+  padding: 5px 12px;
+
+  margin: 5px 0 10px;
+
+  border-radius: 15px;
+
+  background: #e0f2fe;
+
+  color: #0369a1;
+
+  font-weight: bold;
+}
+
+
+/* =========================================================
+   ⭐ FAVORITO
+   ========================================================= */
+
+.tarjeta-favorita {
+
+  border-color: #f59e0b;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff7ed,
+      #fef3c7
+    );
+
+  box-shadow:
+    0 6px 0 #b45309;
+}
+
+
+.tarjeta-favorita:hover {
+
+  box-shadow:
+    0 14px 0 #b45309,
+    0 18px 25px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   🎮 BOTONES DE LA TARJETA
+   ========================================================= */
+
+.panel-botones {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+
+/* ⭐ FAVORITO */
+
+.btn-favorito {
+
+  width: 100%;
+
+  padding: 10px;
+
+  border: 3px solid #92400e;
+
+  border-radius: 10px;
+
+  background: #fde68a;
+
+  color: #78350f;
+
+  font-family: inherit;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #92400e;
+
+  transition: 0.2s;
+}
+
+
+.btn-favorito:hover {
+
+  background: #facc15;
+
+  transform: translateY(-2px);
+}
+
+
+.btn-favorito:active {
+
+  transform: translateY(2px);
+
+  box-shadow:
+    0 2px 0 #92400e;
+}
+
+
+/* FAVORITO ACTIVO */
+
+.btn-favorito.fav-activo {
+
+  background: #f59e0b;
+
+  color: white;
+
+  border-color: #78350f;
+}
+
+
+/* =========================================================
+   🔴 ELIMINAR
+   ========================================================= */
+
+.btn-eliminar {
+
+  width: 100%;
+
+  padding: 10px;
+
+  border: 3px solid #991b1b;
+
+  border-radius: 10px;
+
+  background: #ef4444;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 0 #7f1d1d;
+
+  transition: 0.2s;
+}
+
+
+.btn-eliminar:hover {
+
+  background: #dc2626;
+
+  transform: translateY(-2px);
+}
+
+
+.btn-eliminar:active {
+
+  transform: translateY(2px);
+
+  box-shadow:
+    0 2px 0 #7f1d1d;
+}
+
+
+/* =========================================================
+   🎒 MOCHILA VACÍA
+   ========================================================= */
+
+.mochila-vacia {
+
+  grid-column: 1 / -1;
+
+  padding: 40px;
+
+  text-align: center;
+
+  background: #f8fafc;
+
+  border: 4px dashed #64748b;
+
+  border-radius: 20px;
+
+  color: #475569;
+
+  font-size: 18px;
+
+  font-weight: bold;
+}
+
+
+/* =========================================================
+   🚫 NO HAY ENTRENADOR
+   ========================================================= */
+
+.no-entrenador {
+
+  max-width: 700px;
+
+  margin: 40px auto;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background: #fee2e2;
+
+  border: 5px solid #dc2626;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 7px 0 #991b1b;
+}
+
+
+.no-entrenador h3 {
+
+  color: #991b1b;
+
+  font-size: 25px;
+}
+
+
+/* =========================================================
+   🎨 BOTONES GENERALES
+   ========================================================= */
+
+button {
+
+  font-family: inherit;
+}
+
+
+button:hover {
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   📱 RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+  header h1 {
+
+    font-size: 22px;
+  }
+
+
+  header nav {
+
+    gap: 12px;
+  }
+
+
+  header nav a {
+
+    min-width: 140px;
+
+    padding: 11px 18px;
+  }
+
+
+  #FormularioRegistro {
+
+    grid-template-columns: 1fr;
+
+    column-gap: 0;
+
+    row-gap: 18px;
+  }
+
+
+  #FormularioRegistro > div:has(input[type="checkbox"]) {
+
+    grid-column: 1;
+  }
+
+
+  #FormularioRegistro .btn-submit {
+
+    grid-column: 1;
+
+    max-width: 100%;
+  }
+
+
+  .registro-container,
+  .buscador-container,
+  .inventario-container {
+
+    padding: 20px;
+  }
+
+
+  .grid-mochila {
+
+    grid-template-columns:
+      repeat(
+        auto-fit,
+        minmax(190px, 1fr)
+      );
+  }
+}
+
+
+/* =========================================================
+   📱 RESPONSIVE - CELULAR
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+  main {
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+  }
+
+
+  header {
+
+    padding: 20px 12px;
+  }
+
+
+  header h1 {
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    margin-bottom: 20px;
+  }
+
+
+  header nav {
+
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 12px;
+  }
+
+
+  header nav a {
+
+    width: 100%;
+
+    min-width: 0;
+  }
+
+
+  .registro-container,
+  .buscador-container,
+  .inventario-container {
+
+    padding: 15px;
+
+    border-width: 4px;
+
+    border-radius: 18px;
+  }
+
+
+  .registro-container > header {
+
+    padding: 18px;
+
+    margin-bottom: 20px;
+  }
+
+
+  .registro-container > header h2 {
+
     font-size: 20px;
   }
-}
-p {
-  margin: 0;
+
+
+  #FormularioRegistro {
+
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+
+  #FormularioRegistro input:not([type="checkbox"]),
+  #FormularioRegistro select {
+
+    height: 46px;
+
+    font-size: 14px;
+  }
+
+
+  #FormularioRegistro label {
+
+    font-size: 14px;
+  }
+
+
+  #FormularioRegistro > div:has(input[type="checkbox"]) {
+
+    padding: 12px;
+
+    align-items: flex-start;
+  }
+
+
+  #FormularioRegistro div:has(input[type="checkbox"]) label {
+
+    font-size: 13px;
+
+    line-height: 1.4;
+  }
+
+
+  .buscador-form {
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .btn-buscar {
+
+    width: 100%;
+  }
+
+
+  .pokemon-card {
+
+    padding: 20px;
+  }
+
+
+  .pokemon-card img {
+
+    width: 170px;
+
+    height: 170px;
+  }
+
+
+  .grid-mochila {
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+
+  .lista-entrenadores {
+
+    flex-direction: column;
+  }
+
+
+  .btn-entrenador {
+
+    width: 100%;
+  }
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+
+/* =========================================================
+   ✨ ANIMACIÓN POKÉMON
+   ========================================================= */
+
+@keyframes brilloPokemon {
+
+  0% {
+    box-shadow:
+      0 8px 0 #111827,
+      0 0 0 rgba(59, 130, 246, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 0 #111827,
+      0 0 25px rgba(59, 130, 246, 0.30);
+  }
+
+  100% {
+    box-shadow:
+      0 8px 0 #111827,
+      0 0 0 rgba(59, 130, 246, 0);
+  }
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}

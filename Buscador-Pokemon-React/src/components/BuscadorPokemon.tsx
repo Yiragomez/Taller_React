@@ -60,19 +60,19 @@ export const BuscadorPokemon: React.FC = () =>{
 
 
 return(
-<div className=" ">
+<div className="buscador-container">
     <div>
         {entrenadorActivo ? (
             <p>Mochila Activa de: <strong>{entrenadorActivo.nombreCompleto}</strong></p>
         ) : (
             <p>No hay entrenador Activo. Ve al formulario de Registro para activarlo, socio.</p>
         )}
-    </div><form onSubmit={buscarPokemon}>
-            <div>
+    </div><form onSubmit={buscarPokemon} className='buscador-form'>
+            <div className="campo-busqueda">
                 <label>Buscar Pokemon</label>
                 <input type="text" value={busqueda} onChange={(e) => setBusqueda(e.target.value)}></input>
             </div>
-            <button type='submit' disabled={cargando}> {cargando ? 'Escaneando...' : 'Buscar'}
+            <button type='submit' className="btn-buscar" disabled={cargando}> {cargando ? 'Escaneando...' : 'Buscar'}
             </button>
         </form>
 
@@ -82,7 +82,7 @@ return(
       )}
 
       {pokemonActual &&(
-    <div>
+    <div className="pokemon-card">
         <h3>{pokemonActual.name}</h3>
         <img src={pokemonActual.image}></img>
         <p>

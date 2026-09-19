@@ -46,12 +46,12 @@ export const RegistroUsuario: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="registro-container">
       <header>
         <h2>Registro de Entrenadores</h2>
       </header>
 
-      <div>
+      <div className="cambiar-entrenador">
         <form id="FormularioRegistro" action="#" onSubmit={eventoSubmit}>
           <div className="form-row">
             <div className="form-group">
@@ -60,7 +60,7 @@ export const RegistroUsuario: React.FC = () => {
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="lista-entrenadores">
             <label htmlFor="apellido">Apellido:</label>
             <br />
             <input type="text" id="apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} name="apellido" placeholder="Perez" required/>
@@ -150,21 +150,31 @@ export const RegistroUsuario: React.FC = () => {
       </div>
 
         {entrenadores.length > 0 && (
-          <div>
-            <h3> Cambiar entrenador</h3>
-            <div>
-              {entrenadores.map((user) => (
-                <button key={user.id} type="button" onClick={() => seleccionarEntrenador(user)}
-                  style={{ 
-                      backgroundColor: entrenadorActivo?.id === user.id ? '#c42160': '#7e7676',
-                      color: entrenadorActivo?.id === user.id ? 'white' : 'black',
-                      padding: '6px 12px',
-                   }}>{user.nombreCompleto}</button>
-                   
-              ))}
-            </div>
-          </div>)
-        };
+  <div className="cambiar-entrenador">
+
+    <h3>🔄 Cambiar entrenador</h3>
+
+    <div className="lista-entrenadores">
+
+      {entrenadores.map((user) => (
+
+        <button
+          key={user.id}
+          type="button"
+          className={`btn-entrenador ${
+            entrenadorActivo?.id === user.id ? 'activo' : ''
+          }`}
+          onClick={() => seleccionarEntrenador(user)}
+        >
+          {user.nombreCompleto}
+        </button>
+
+      ))}
+
+    </div>
+
+  </div>
+)}
     </div>
   );
 };

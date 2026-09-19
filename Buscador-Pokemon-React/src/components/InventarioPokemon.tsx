@@ -17,7 +17,7 @@ export const InventarioPokemon: React.FC = () =>{
 
 
 return(
-<div className=" banner-seccion"> 
+<div className="inventario-container"> 
     <header>
       <h2> mochila de {entrenadorActivo.nombreCompleto}</h2>
     </header>
@@ -44,9 +44,9 @@ return(
           </div>
         ))
         ) : (
-          <div>
-              <p>Tu mochila esta vacia actualmente.</p>
-              <p>Vaya y capture pokemon, pap@!</p>
+          <div className="mochila-vacia">
+            <p>🎒 Tu mochila está vacía actualmente.</p>
+            <p>⚡ ¡Ve y captura Pokémon!</p>
           </div>
         )
       }
